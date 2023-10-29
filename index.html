@@ -41,6 +41,8 @@
         //Api Variables
         const apikey = "00d469ecc9a471c5c1dfba3f35c61303";
         const apiurl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+        //Variable for Changing the image icons due to weather conditions
         const weatherIcon = document.querySelector(".w-icon");
 
         //Searching weather data for the particular data. 
@@ -53,8 +55,11 @@
             const response = await fetch(apiurl + city +`&appid=${apikey}`);//fetching the api 
             var data = await response.json();//getting the datas in json format
 
-            console.log(data);//printing the All Datas in browser console 
-            // //Bringing the necessary details from Console to web page
+            //printing the All Datas in browser console 
+            console.log(data);
+
+            // Bringing the necessary details from Console to web page
+
             document.querySelector(".city").innerHTML = data.name;//city name
             document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";//city's temp
             document.querySelector(".humidity").innerHTML = data.main.humidity + "%";//city's humidity
@@ -62,6 +67,7 @@
 
 
             //Updating the Weather icons relatively ...
+
             if (data.weather[0].main == "Coluds"){
                 weatherIcon.src = "images/clouds.png"
             } else if (data.weather[0].main == "Clear"){
@@ -79,8 +85,10 @@
             }
 
         }
+
+        //Adding Click event to the search button 
         searchIcon.addEventListener("click", ()=>{
-            checkweather(searchBox.value); 
+            checkweather(searchBox.value); //Calling the function after a click on search button
         })
     </script>
 </body>
